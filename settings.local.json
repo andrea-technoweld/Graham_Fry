@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/AndreaPelizzari/AppData/Roaming/Claude/local-agent-mode-sessions/skills-plugin/5b289044-5ce2-4ae3-aaa8-3d6699736208/82edef3f-6542-4eeb-9786-bfc207915595/skills/docx/**)",
+      "Bash(extract-text \"C:\\\\Users\\\\AndreaPelizzari\\\\OneDrive - Technoweld Pty Ltd\\\\GF Website content\\\\Graham Fry home page text.docx\")",
+      "Bash(pandoc \"C:\\\\Users\\\\AndreaPelizzari\\\\OneDrive - Technoweld Pty Ltd\\\\GF Website content\\\\Graham Fry home page text.docx\" -t plain)",
+      "Bash(python -c ' *)"
+    ]
+  }
+}
