@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welding Optimisation &amp; Process Improvement | Graham Fry</title>
+  <meta name="description" content="Graham Fry works with fabrication businesses to identify where productivity is being lost and implement practical, technically sound welding process improvements.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Open+Sans:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* ---- Mockup review banner ---- */
+    .mockup-banner {
+      background: #f59e0b;
+      color: #1c1917;
+      text-align: center;
+      padding: 10px 20px;
+      font-family: var(--font-sans);
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      position: relative;
+      z-index: 999;
+    }
+
+    /* ---- Results band ---- */
+    .results-band {
+      background: linear-gradient(135deg, var(--ink-slate) 0%, var(--deep-slate) 100%);
+      padding: 72px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .results-band::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--copper), var(--burnt-amber), var(--copper));
+    }
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      text-align: center;
+    }
+    .result-item {
+      padding: 24px 20px;
+      border-right: 1px solid rgba(255,255,255,.08);
+    }
+    .result-item:last-child { border-right: none; }
+    .result-num {
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: var(--copper-light);
+      line-height: 1;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .result-label {
+      font-family: var(--font-sans);
+      font-size: .8rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.6);
+      line-height: 1.4;
+    }
+
+    /* ---- Process steps ---- */
+    .process-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .process-step {
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 24px;
+      padding: 32px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: flex-start;
+    }
+    .process-step:last-child { border-bottom: none; }
+    .process-step__num {
+      width: 56px;
+      height: 56px;
+      background: var(--ink-slate);
+      border-radius: var(--radius);
+      border-bottom: 3px solid var(--copper);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--copper-light);
+      flex-shrink: 0;
+    }
+    .process-step__content h3 {
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+    }
+    .process-step__content p {
+      font-size: .92rem;
+      color: var(--text-light);
+      margin-bottom: .5rem;
+    }
+    .process-step__content p:last-child { margin-bottom: 0; }
+    .process-step__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+    .process-step__tag {
+      font-family: var(--font-sans);
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 2px;
+      background: var(--bright-steel);
+      color: var(--text-body);
+      border: 1px solid var(--border);
+    }
+
+    /* ---- Problem cards ---- */
+    .problem-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 24px;
+      border-left: 3px solid var(--copper);
+      transition: box-shadow .2s;
+    }
+    .problem-card:hover { box-shadow: var(--shadow); }
+    .problem-card__icon {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .problem-card h4 { margin-bottom: 6px; font-size: .95rem; }
+    .problem-card p { font-size: .875rem; color: var(--text-light); margin: 0; }
+
+    /* ---- Industries strip ---- */
+    .industry-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .industry-tag {
+      background: var(--ink-slate);
+      color: rgba(255,255,255,.8);
+      font-family: var(--font-sans);
+      font-size: .78rem;
+      font-weight: 600;
+      padding: 7px 16px;
+      border-radius: 2px;
+      letter-spacing: .03em;
+    }
+
+    /* ---- Trigger checklist ---- */
+    .trigger-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .trigger-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: .95rem;
+      color: var(--text-body);
+    }
+    .trigger-item:last-child { border-bottom: none; }
+    .trigger-item__icon {
+      width: 28px;
+      height: 28px;
+      background: rgba(184,115,51,.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .8rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+      color: var(--copper);
+      font-weight: 700;
+    }
+
+    @media (max-width: 768px) {
+      .results-grid { grid-template-columns: repeat(2, 1fr); }
+      .result-item:nth-child(2) { border-right: none; }
+      .process-step { grid-template-columns: 48px 1fr; gap: 16px; }
+    }
+    @media (max-width: 480px) {
+      .results-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- MOCKUP REVIEW BANNER -->
+<div class="mockup-banner" role="note">
+  MOCKUP — For review by Graham Fry before publishing. Content and layout subject to change.
+</div>
+
+<!-- ============================================================
+     NAV
+     ============================================================ -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav__inner">
+    <a href="index.html" class="nav__brand" aria-label="Graham Fry — Home">
+      <div class="nav__brand-mark" aria-hidden="true">GF</div>
+      <div class="nav__brand-text-wrap">
+        <span class="nav__brand-name">Graham Fry</span>
+        <span class="nav__brand-title">Principal Welding Engineer</span>
+      </div>
+    </a>
+    <ul class="nav__links" role="list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="career.html">Career &amp; CV</a></li>
+      <li><a href="#" style="color: var(--copper);">Services ▾</a></li>
+      <li><a href="work-with-graham.html">Work with Graham</a></li>
+      <li><a href="blog.html">Articles</a></li>
+    </ul>
+    <a href="work-with-graham.html" class="btn btn--primary nav__cta">Book a Consultation</a>
+    <button class="nav__toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="nav__mobile" id="mobile-nav" aria-label="Mobile navigation">
+    <ul role="list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="career.html">Career &amp; CV</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="work-with-graham.html">Work with Graham</a></li>
+      <li><a href="blog.html">Articles</a></li>
+      <li><a href="work-with-graham.html" class="btn btn--primary" style="margin-top:8px;display:block;text-align:center;">Book a Consultation</a></li>
+    </ul>
+  </nav>
+</nav>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero" style="padding-bottom: 80px;">
+  <div class="container">
+    <div class="fade-up">
+      <span class="section-label">Services — Welding Optimisation</span>
+      <h1 style="margin-top: 12px; max-width: 720px;">Your Welding Process Is Probably Costing You More Than It Should</h1>
+      <p class="lead" style="max-width: 600px; margin-top: 16px;">Fabrication businesses rarely struggle because they lack welders. More often, productivity issues originate from welding processes that have never been systematically optimised — procedures developed years ago and left unchanged as equipment, consumables, and production demands have moved on.</p>
+      <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-top: 32px;">
+        <a href="work-with-graham.html" class="btn btn--primary btn--lg">Discuss Your Project</a>
+        <a href="#approach" class="btn btn--outline btn--lg">See the Approach</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     RESULTS BAND
+     ============================================================ -->
+<div class="results-band fade-up" aria-label="Typical results">
+  <div class="container">
+    <p style="text-align: center; font-family: var(--font-sans); font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.35); margin-bottom: 40px;">Typical results from well-implemented optimisation programmes</p>
+    <div class="results-grid">
+      <div class="result-item">
+        <span class="result-num">20–40%</span>
+        <span class="result-label">Improvement in welding productivity</span>
+      </div>
+      <div class="result-item">
+        <span class="result-num">↓</span>
+        <span class="result-label">Reduced weld metal consumption &amp; lower distortion</span>
+      </div>
+      <div class="result-item">
+        <span class="result-num">↓</span>
+        <span class="result-label">Reduced repair and rework rates</span>
+      </div>
+      <div class="result-item">
+        <span class="result-num">0</span>
+        <span class="result-label">Major capital investment required in most cases</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     WHAT IS WELDING OPTIMISATION
+     ============================================================ -->
+<section class="section">
+  <div class="container">
+    <div class="grid-2" style="align-items: center; gap: 72px;">
+      <div class="fade-up">
+        <span class="section-label">What it actually means</span>
+        <h2 style="margin-top: 8px;">More Than Just Welding Faster</h2>
+        <p style="margin-top: 16px;">Welding optimisation is the systematic improvement of welding operations to maximise productivity, quality, and process control across the entire fabrication process. It's not about pushing welders harder — it's about engineering the system around them properly.</p>
+        <p>Because welding involves complex interactions between heat input, metallurgy, and mechanical performance, improvements must be implemented carefully to maintain compliance with relevant standards and design requirements. The goal is procedures that are both technically robust and efficient for production use.</p>
+        <p>In many workshops, relatively small changes to welding procedures, joint design, or parameter control can significantly increase deposition efficiency and reduce welding cycle time — without touching the workforce at all.</p>
+      </div>
+      <div class="fade-up">
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div class="card" style="padding: 20px 24px; border-left: 3px solid var(--copper);">
+            <h4 style="margin-bottom: 4px;">Welding procedures &amp; parameters</h4>
+            <p style="font-size: .875rem; color: var(--text-light); margin: 0;">Process selection, parameter ranges, consumables, shielding gases, heat input control</p>
+          </div>
+          <div class="card" style="padding: 20px 24px; border-left: 3px solid var(--copper);">
+            <h4 style="margin-bottom: 4px;">Joint design &amp; weld sizing</h4>
+            <p style="font-size: .875rem; color: var(--text-light); margin: 0;">Reducing excess weld metal to standards-compliant minimums — one of the biggest productivity gains available</p>
+          </div>
+          <div class="card" style="padding: 20px 24px; border-left: 3px solid var(--copper);">
+            <h4 style="margin-bottom: 4px;">Equipment &amp; technology</h4>
+            <p style="font-size: .875rem; color: var(--text-light); margin: 0;">Most fabrication businesses are not fully utilising the capabilities already in their workshop</p>
+          </div>
+          <div class="card" style="padding: 20px 24px; border-left: 3px solid var(--copper);">
+            <h4 style="margin-bottom: 4px;">Production workflow</h4>
+            <p style="font-size: .875rem; color: var(--text-light); margin: 0;">Welding tasks integrated properly into the fabrication sequence to eliminate bottlenecks</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     COMMON PROBLEMS
+     ============================================================ -->
+<section class="section" style="background: var(--steel-light);">
+  <div class="container">
+    <div class="fade-up" style="text-align: center; margin-bottom: 48px;">
+      <span class="section-label">Do any of these sound familiar?</span>
+      <h2 style="margin-top: 8px;">Common Problems in Fabrication Workshops</h2>
+      <p class="lead" style="margin-top: 12px; max-width: 580px; margin-left: auto; margin-right: auto;">In many workshops, businesses initially attribute productivity problems to labour shortages or workload pressure. Detailed analysis often reveals the primary issue lies in process inefficiency.</p>
+    </div>
+    <div class="grid-3 fade-up">
+      <div class="problem-card">
+        <span class="problem-card__icon" aria-hidden="true">⚙️</span>
+        <h4>Manual welding where automation would help</h4>
+        <p>Semi-automatic or mechanised methods would significantly increase deposition rate, but manual processes remain in place from habit.</p>
+      </div>
+      <div class="problem-card">
+        <span class="problem-card__icon" aria-hidden="true">📄</span>
+        <h4>Procedures written for qualification, not production</h4>
+        <p>WPS documents developed primarily to pass a test, with conservative parameters that don't reflect what's achievable in production.</p>
+      </div>
+      <div class="problem-card">
+        <span class="problem-card__icon" aria-hidden="true">📏</span>
+        <h4>Oversized welds throughout the structure</h4>
+        <p>Fillet welds larger than the drawing requires. Every extra millimetre of weld leg is wasted time, consumables, and heat input.</p>
+      </div>
+      <div class="problem-card">
+        <span class="problem-card__icon" aria-hidden="true">🔧</span>
+        <h4>High repair and rework rates</h4>
+        <p>Recurring weld defects and repairs that consume significant time but whose root cause has never been systematically investigated.</p>
+      </div>
+      <div class="problem-card">
+        <span class="problem-card__icon" aria-hidden="true">🔋</span>
+        <h4>Underutilised modern equipment</h4>
+        <p>Power sources with advanced waveform and pulsed modes sitting on conservative settings because nobody has reviewed their configuration.</p>
+      </div>
+      <div class="problem-card">
+        <span class="problem-card__icon" aria-hidden="true">⏱</span>
+        <h4>Welding as a production bottleneck</h4>
+        <p>Other trades waiting on welding to complete. Project schedules driven by welding throughput rather than total fabrication capacity.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     THE APPROACH
+     ============================================================ -->
+<section class="section" id="approach">
+  <div class="container">
+    <div class="grid-2" style="gap: 80px; align-items: flex-start;">
+      <div class="fade-up">
+        <span class="section-label">A structured engineering methodology</span>
+        <h2 style="margin-top: 8px;">The Optimisation Approach</h2>
+        <p style="margin-top: 16px; margin-bottom: 32px;">Rather than focusing only on the welding arc, the approach considers the entire fabrication system. Welding productivity is strongly influenced by joint design, fit-up quality, consumable selection, and production workflow. By analysing these elements together, it becomes possible to identify opportunities that are often overlooked in day-to-day workshop operations.</p>
+        <div class="quote-block">
+          <p>"Process optimisation is only successful if improvements can be implemented effectively within the workshop environment. That's why I work directly with workshop personnel during implementation — not just management."</p>
+          <cite>Graham Fry — IWE, Principal Welding Engineer</cite>
+        </div>
+      </div>
+      <div class="fade-up">
+        <div class="process-steps">
+
+          <div class="process-step">
+            <div class="process-step__num" aria-hidden="true">1</div>
+            <div class="process-step__content">
+              <h3>Fabrication Process Review</h3>
+              <p>A detailed review of the fabrication workflow and welding practices — examining welding procedures, production methods, equipment configuration, consumables, and inspection requirements.</p>
+              <div class="process-step__tags">
+                <span class="process-step__tag">WPS review</span>
+                <span class="process-step__tag">Equipment audit</span>
+                <span class="process-step__tag">Defect trends</span>
+                <span class="process-step__tag">Consumables</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="process-step__num" aria-hidden="true">2</div>
+            <div class="process-step__content">
+              <h3>Welding Productivity Analysis</h3>
+              <p>Quantitative measurement of arc-on time, deposition rate, weld metal volume, repair rates, and consumable consumption. Actual performance compared against achievable benchmarks.</p>
+              <div class="process-step__tags">
+                <span class="process-step__tag">Arc-on time</span>
+                <span class="process-step__tag">Deposition rate</span>
+                <span class="process-step__tag">Repair rates</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="process-step__num" aria-hidden="true">3</div>
+            <div class="process-step__content">
+              <h3>Procedure &amp; Parameter Optimisation</h3>
+              <p>Refinement of welding procedures and parameter settings to achieve higher deposition efficiency while maintaining weld quality, metallurgical integrity, and standards compliance.</p>
+              <div class="process-step__tags">
+                <span class="process-step__tag">GMAW / FCAW</span>
+                <span class="process-step__tag">Heat input</span>
+                <span class="process-step__tag">Shielding gas</span>
+                <span class="process-step__tag">Distortion control</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="process-step__num" aria-hidden="true">4</div>
+            <div class="process-step__content">
+              <h3>Joint Design &amp; Weld Size Review</h3>
+              <p>Review of joint design and weld sizing against applicable standards. Even modest reductions in weld metal volume produce substantial productivity improvements across high-volume work.</p>
+              <div class="process-step__tags">
+                <span class="process-step__tag">Fillet weld sizing</span>
+                <span class="process-step__tag">Groove geometry</span>
+                <span class="process-step__tag">Fit-up tolerances</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="process-step__num" aria-hidden="true">5</div>
+            <div class="process-step__content">
+              <h3>Implementation with the Workshop Team</h3>
+              <p>Working directly with welders and supervisors to ensure improvements are clearly understood, correctly applied, and maintained in production — not just documented and forgotten.</p>
+              <div class="process-step__tags">
+                <span class="process-step__tag">On-floor training</span>
+                <span class="process-step__tag">Supervisor briefing</span>
+                <span class="process-step__tag">Ongoing support</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     INDUSTRIES
+     ============================================================ -->
+<section class="section" style="background: var(--steel-light);">
+  <div class="container">
+    <div class="fade-up" style="max-width: 760px; margin: 0 auto; text-align: center;">
+      <span class="section-label">Industries Supported</span>
+      <h2 style="margin-top: 8px;">Where Welding Performance Directly Affects the Bottom Line</h2>
+      <p style="margin-top: 16px; color: var(--text-light);">Graham works with fabrication businesses across heavy industry sectors where welding performance directly affects productivity, structural integrity, and compliance with project specifications.</p>
+      <div class="industry-tags" style="justify-content: center; margin-top: 28px;">
+        <span class="industry-tag">Structural Steel Fabrication</span>
+        <span class="industry-tag">Mining Equipment Manufacturing</span>
+        <span class="industry-tag">Pressure Equipment &amp; Piping</span>
+        <span class="industry-tag">Defence &amp; Marine</span>
+        <span class="industry-tag">Infrastructure Projects</span>
+        <span class="industry-tag">General Heavy Engineering</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     WHEN TO ENGAGE
+     ============================================================ -->
+<section class="section">
+  <div class="container">
+    <div class="grid-2" style="gap: 72px; align-items: flex-start;">
+      <div class="fade-up">
+        <span class="section-label">Is this the right time?</span>
+        <h2 style="margin-top: 8px;">When to Consider Welding Optimisation Consulting</h2>
+        <p style="margin-top: 16px;">Many businesses seek support when persistent production or quality issues emerge. But optimisation also provides significant value during periods of growth or technology transition — before inefficiencies become embedded in production systems.</p>
+        <p>Early optimisation is always less expensive than retrofitting fixes to an established but poorly performing process.</p>
+        <a href="work-with-graham.html" class="btn btn--primary" style="margin-top: 24px; display: inline-flex;">Have a Conversation with Graham</a>
+      </div>
+      <div class="fade-up">
+        <div class="trigger-list">
+          <div class="trigger-item">
+            <div class="trigger-item__icon" aria-hidden="true">→</div>
+            <span>Welding has become a production bottleneck holding up other trades or delivery schedules</span>
+          </div>
+          <div class="trigger-item">
+            <div class="trigger-item__icon" aria-hidden="true">→</div>
+            <span>Weld repair rates are increasing or quality issues are occurring more frequently</span>
+          </div>
+          <div class="trigger-item">
+            <div class="trigger-item__icon" aria-hidden="true">→</div>
+            <span>Pressure to reduce fabrication costs or improve competitiveness on project tenders</span>
+          </div>
+          <div class="trigger-item">
+            <div class="trigger-item__icon" aria-hidden="true">→</div>
+            <span>New welding equipment has been installed but procedures haven't been reviewed to utilise its capabilities</span>
+          </div>
+          <div class="trigger-item">
+            <div class="trigger-item__icon" aria-hidden="true">→</div>
+            <span>Fabrication capacity is expanding and existing processes need to scale reliably</span>
+          </div>
+          <div class="trigger-item">
+            <div class="trigger-item__icon" aria-hidden="true">→</div>
+            <span>Welding procedures haven't been reviewed or updated in several years</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SERVICES SUMMARY
+     ============================================================ -->
+<section class="section" style="background: var(--steel-light);">
+  <div class="container">
+    <div class="fade-up" style="text-align: center; margin-bottom: 48px;">
+      <span class="section-label">What's included</span>
+      <h2 style="margin-top: 8px;">Welding Optimisation Services</h2>
+    </div>
+    <div class="grid-3 fade-up">
+      <div class="card" style="text-align: center; padding: 32px 24px;">
+        <span style="font-size: 2rem; display: block; margin-bottom: 16px;" aria-hidden="true">🔍</span>
+        <h4 style="margin-bottom: 8px;">Welding Process Audit</h4>
+        <p style="font-size: .875rem; color: var(--text-light);">Systematic review of existing welding procedures, practices, equipment, and consumables to identify inefficiencies and compliance gaps.</p>
+      </div>
+      <div class="card" style="text-align: center; padding: 32px 24px;">
+        <span style="font-size: 2rem; display: block; margin-bottom: 16px;" aria-hidden="true">📊</span>
+        <h4 style="margin-bottom: 8px;">Productivity Analysis</h4>
+        <p style="font-size: .875rem; color: var(--text-light);">Quantitative measurement and benchmarking of welding performance to establish where production time and cost are being lost.</p>
+      </div>
+      <div class="card" style="text-align: center; padding: 32px 24px;">
+        <span style="font-size: 2rem; display: block; margin-bottom: 16px;" aria-hidden="true">📋</span>
+        <h4 style="margin-bottom: 8px;">Procedure Optimisation</h4>
+        <p style="font-size: .875rem; color: var(--text-light);">Development and revision of WPS documents to improve deposition efficiency while maintaining standards compliance and weld quality.</p>
+      </div>
+      <div class="card" style="text-align: center; padding: 32px 24px;">
+        <span style="font-size: 2rem; display: block; margin-bottom: 16px;" aria-hidden="true">📐</span>
+        <h4 style="margin-bottom: 8px;">Fabrication Workflow Improvement</h4>
+        <p style="font-size: .875rem; color: var(--text-light);">Review of how welding tasks are sequenced within the fabrication workflow to eliminate bottlenecks and reduce non-productive time.</p>
+      </div>
+      <div class="card" style="text-align: center; padding: 32px 24px;">
+        <span style="font-size: 2rem; display: block; margin-bottom: 16px;" aria-hidden="true">🤝</span>
+        <h4 style="margin-bottom: 8px;">Technical Implementation Support</h4>
+        <p style="font-size: .875rem; color: var(--text-light);">On-floor support during implementation to ensure welders and supervisors apply improvements correctly and consistently.</p>
+      </div>
+      <div class="card" style="text-align: center; padding: 32px 24px; background: var(--ink-slate); border-color: var(--ink-slate);">
+        <span style="font-size: 2rem; display: block; margin-bottom: 16px;" aria-hidden="true">💬</span>
+        <h4 style="margin-bottom: 8px; color: var(--white);">Not Sure Where to Start?</h4>
+        <p style="font-size: .875rem; color: rgba(255,255,255,.6); margin-bottom: 20px;">A short conversation is usually enough to identify whether there's a case for a formal review.</p>
+        <a href="work-with-graham.html" class="btn btn--primary" style="width: 100%; justify-content: center;">Get in Touch</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CTA BANNER
+     ============================================================ -->
+<section class="section">
+  <div class="container fade-up">
+    <div class="cta-banner">
+      <div>
+        <h2>Ready to improve your welding operation?</h2>
+        <p>Graham works with fabrication businesses across Australia to deliver practical, technically sound improvements to welding processes — without unnecessary disruption to production.</p>
+      </div>
+      <a href="work-with-graham.html" class="btn btn--primary btn--lg" style="white-space: nowrap;">Discuss Your Project</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="footer" role="contentinfo">
+  <div class="footer__inner">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand">
+          <div class="nav__brand-mark" aria-hidden="true" style="width:40px;height:40px;font-size:.85rem;">GF</div>
+          <div class="footer__brand-text-wrap">
+            <span class="footer__brand-name">Graham Fry</span>
+            <span class="footer__brand-title">Principal Welding Engineer</span>
+          </div>
+        </div>
+        <p class="footer__desc">European / International Welding Engineer. 30+ years of welding management consulting, inspection, and quality system implementation across Australia and internationally.</p>
+      </div>
+      <div>
+        <p class="footer__heading">Navigation</p>
+        <ul class="footer__links" role="list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Graham</a></li>
+          <li><a href="career.html">Career &amp; CV</a></li>
+          <li><a href="work-with-graham.html">Work with Graham</a></li>
+          <li><a href="blog.html">Articles</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__heading">Services</p>
+        <ul class="footer__links" role="list">
+          <li><a href="service-welding-optimisation.html">Welding Optimisation</a></li>
+          <li><a href="work-with-graham.html">Welding Inspection</a></li>
+          <li><a href="work-with-graham.html">Procedure Development</a></li>
+          <li><a href="work-with-graham.html">Quality Management</a></li>
+          <li><a href="work-with-graham.html">Standards Compliance</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__heading">Contact</p>
+        <div class="footer__contact-item">
+          <span class="footer__contact-icon" aria-hidden="true">📞</span>
+          <span class="footer__contact-text"><a href="tel:+61409698968">+61 409 698 968</a></span>
+        </div>
+        <div class="footer__contact-item">
+          <span class="footer__contact-icon" aria-hidden="true">🌐</span>
+          <span class="footer__contact-text"><a href="https://www.technoweld.com.au" target="_blank" rel="noopener">technoweld.com.au</a></span>
+        </div>
+        <div class="footer__contact-item">
+          <span class="footer__contact-icon" aria-hidden="true">📍</span>
+          <span class="footer__contact-text">South Australia, Australia</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy">&copy; 2025 Graham Fry / Technoweld Pty. Ltd. All rights reserved.</p>
+      <div class="footer__legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
