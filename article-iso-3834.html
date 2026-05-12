@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Why ISO 3834 Should Be Non-Negotiable for Australian Fabricators | Graham Fry</title>
+  <meta name="description" content="Too many Australian fabrication shops are treating ISO 3834 as someone else's problem. That view is getting companies filtered out of major projects. Here's what the standard actually requires and what goes wrong without it.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Open+Sans:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* ---- Article-specific styles ---- */
+    .article-hero {
+      padding: calc(var(--nav-h) + 56px) 0 56px;
+      background: linear-gradient(160deg, var(--ink-slate) 0%, var(--deep-slate) 100%);
+    }
+    .article-hero__inner {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+    .article-hero__cat {
+      display: inline-block;
+      background: var(--patina);
+      color: var(--white);
+      font-family: var(--font-sans);
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 2px;
+      margin-bottom: 20px;
+    }
+    .article-hero h1 {
+      color: var(--white);
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    .article-hero__meta {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .article-hero__meta span {
+      font-family: var(--font-sans);
+      font-size: .8rem;
+      color: rgba(255,255,255,.55);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .article-hero__meta span strong {
+      color: var(--copper-light);
+      font-weight: 700;
+    }
+
+    /* Article body */
+    .article-body {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 64px 28px 80px;
+    }
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--text-body);
+      margin-bottom: 1.4rem;
+    }
+    .article-body h2 {
+      font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .article-body h2:first-of-type {
+      border-top: none;
+      padding-top: 0;
+    }
+    .article-body strong {
+      color: var(--ink-slate);
+      font-weight: 700;
+    }
+    .article-body ul {
+      list-style: none;
+      margin: 0 0 1.4rem;
+      padding: 0;
+    }
+    .article-body ul li {
+      padding: 6px 0 6px 24px;
+      position: relative;
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--text-body);
+    }
+    .article-body ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--copper);
+      font-size: .9rem;
+    }
+    .article-body .article-cta {
+      margin-top: 2.5rem;
+      padding: 36px 40px;
+      background: linear-gradient(135deg, var(--ink-slate), var(--deep-slate));
+      border-radius: var(--radius-lg);
+      border-left: 4px solid var(--copper);
+      position: relative;
+      overflow: hidden;
+    }
+    .article-body .article-cta::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--copper), var(--burnt-amber));
+    }
+    .article-body .article-cta h3 {
+      color: var(--white);
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+    }
+    .article-body .article-cta p {
+      color: rgba(255,255,255,.7);
+      margin-bottom: 20px;
+      font-size: .95rem;
+    }
+
+    .article-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2.5rem 0;
+    }
+
+    .article-author {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      padding: 32px;
+      background: var(--bright-steel);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      margin-top: 2.5rem;
+    }
+    .article-author__avatar {
+      width: 72px;
+      height: 72px;
+      background: var(--ink-slate);
+      border-radius: var(--radius);
+      border-left: 3px solid var(--copper);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+    }
+    .article-author__name {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--ink-slate);
+      margin-bottom: 3px;
+    }
+    .article-author__title {
+      font-family: var(--font-sans);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--copper);
+      margin-bottom: 10px;
+    }
+    .article-author p {
+      font-size: .9rem !important;
+      margin-bottom: 0 !important;
+      color: var(--text-light) !important;
+    }
+
+    .article-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 28px 64px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 640px) {
+      .article-body { padding: 40px 20px 56px; }
+      .article-hero__inner { padding: 0 20px; }
+      .article-author { flex-direction: column; }
+      .article-body .article-cta { padding: 24px 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAV
+     ============================================================ -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav__inner">
+    <a href="index.html" class="nav__brand" aria-label="Graham Fry — Home">
+      <div class="nav__brand-mark" aria-hidden="true">GF</div>
+      <div class="nav__brand-text-wrap">
+        <span class="nav__brand-name">Graham Fry</span>
+        <span class="nav__brand-title">Principal Welding Engineer</span>
+      </div>
+    </a>
+    <ul class="nav__links" role="list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="career.html">Career &amp; CV</a></li>
+      <li><a href="work-with-graham.html">Work with Graham</a></li>
+      <li><a href="blog.html">Articles</a></li>
+    </ul>
+    <a href="work-with-graham.html" class="btn btn--primary nav__cta">Book a Consultation</a>
+    <button class="nav__toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="nav__mobile" id="mobile-nav" aria-label="Mobile navigation">
+    <ul role="list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="career.html">Career &amp; CV</a></li>
+      <li><a href="work-with-graham.html">Work with Graham</a></li>
+      <li><a href="blog.html">Articles</a></li>
+      <li><a href="work-with-graham.html" class="btn btn--primary" style="margin-top:8px;display:block;text-align:center;">Book a Consultation</a></li>
+    </ul>
+  </nav>
+</nav>
+
+<!-- ============================================================
+     ARTICLE HERO
+     ============================================================ -->
+<header class="article-hero" role="banner">
+  <div class="article-hero__inner">
+    <span class="article-hero__cat">Standards &amp; Compliance</span>
+    <h1>Why ISO 3834 Should Be Non-Negotiable for Australian Fabricators</h1>
+    <div class="article-hero__meta">
+      <span>📅 <strong>15 October 2025</strong></span>
+      <span>⏱ <strong>8 min read</strong></span>
+      <span>✍ <strong>Graham Fry</strong> — IWE, Principal Welding Engineer</span>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     ARTICLE BODY
+     ============================================================ -->
+<main>
+  <article class="article-body" aria-label="Article content">
+
+    <p>I've lost count of how many fabrication shops I've walked into where the response to ISO 3834 is some version of "that's for the big guys". The international EPC contractors. The defence primes. The pressure vessel manufacturers exporting to Europe. It's a convenient position, and I understand why it's taken hold. But it's wrong, and it's costing Australian fabricators work they should be winning.</p>
+
+    <p>Over the past few years, I've watched the landscape shift. Major resource projects across Western Australia and Queensland are now specifying ISO 3834 compliance as a baseline. Defence contracts under the AUKUS programme and the continuous naval shipbuilding plan aren't optional about it either. And increasingly, state government infrastructure projects are writing it into their procurement requirements. If you're a fabricator and you don't have ISO 3834 in place, you're not even getting to the table on some of these jobs. You're being filtered out before anyone looks at your price.</p>
+
+    <h2>What ISO 3834 Actually Requires</h2>
+
+    <p>Let's clear something up, because there's a lot of confusion about what ISO 3834 is and what it isn't. It's not a welding code. It doesn't tell you how to weld a particular joint or what filler metal to use. It's a quality management framework specifically for fusion welding. Think of it as the welding-specific equivalent of what ISO 9001 does for general quality management, but with real technical teeth.</p>
+
+    <p>The standard has three levels. Part 2 is comprehensive quality requirements, Part 3 is standard, and Part 4 is elementary. Most fabricators working on anything structural or pressure-retaining will need Part 2 or Part 3. The level you need depends on the criticality of what you're welding, not the size of your company.</p>
+
+    <p>Here's where it gets practical. ISO 3834 requires you to demonstrate control across the full welding lifecycle. That means documented review of contract requirements before you start. It means having welding procedure specifications (WPS) that are properly qualified — not photocopied from a mate's shop or pulled off the internet. It means your welders are qualified and their qualifications are current and relevant to the work they're doing. It means you've got a system for managing consumables, for traceability, for inspection and testing, for handling non-conformances when things go wrong.</p>
+
+    <p>None of that should be controversial. Every decent fabrication shop should be doing most of it already. The difference is that ISO 3834 makes you prove it.</p>
+
+    <h2>Why It Matters Now More Than Ever</h2>
+
+    <p>The Australian fabrication industry is under pressure from multiple directions. Imported steel and fabricated components from Asia continue to grow in market share. Clients are getting more sophisticated about what they specify and what they audit. Insurance and liability requirements are tightening. And the skilled workforce shortage means shops are bringing in welders with varied backgrounds and training levels.</p>
+
+    <p>In that environment, having a robust quality framework isn't a luxury. It's the thing that protects you when something goes wrong on a job, when a client audits your shop, or when you need to demonstrate to a project team that you can deliver what you're promising.</p>
+
+    <p>I've seen fabricators lose contracts they were technically capable of fulfilling simply because they couldn't demonstrate the management systems to support their capability. That's frustrating, but it's also fair. Capability without systems is a gamble, and clients are right to be cautious about it.</p>
+
+    <h2>What I See Going Wrong</h2>
+
+    <p>After working with fabricators across Australia for over 30 years, I can tell you the problems fall into a few consistent patterns.</p>
+
+    <p><strong>Treating it as a paperwork exercise.</strong> This is the most common mistake. A company decides they need ISO 3834, so they buy a set of template documents, fill in the blanks, stick them in a folder, and declare themselves compliant. The problem is that the system doesn't reflect what actually happens on the shop floor. The WPS says one thing, the welder is doing another, and nobody's checking. That's not a quality system. That's a filing system.</p>
+
+    <p><strong>No qualified welding coordinator.</strong> ISO 3834 requires that a responsible welding coordinator is appointed with appropriate technical knowledge. The level of knowledge required depends on which part of the standard you're working to. For Part 2, you typically need someone with comprehensive technical knowledge, which in practice means an International Welding Engineer (IWE) or equivalent. Too many shops either don't have this role filled at all, or they've given it to someone who doesn't have the qualifications or authority to actually do the job.</p>
+
+    <p><strong>WPS qualification gaps.</strong> I regularly walk into shops where the welding procedures haven't been properly qualified to the relevant standard. Sometimes they're qualified to the wrong standard entirely. Sometimes they've been qualified years ago for a different material or thickness range, and nobody's reviewed whether they still cover the current production work. A WPS that doesn't match the work it's being applied to isn't worth the paper it's printed on.</p>
+
+    <p><strong>Ignoring consumable management.</strong> Welding consumables are controlled products. They need to be stored correctly, issued in a traceable manner, and matched to the WPS. I've seen workshops where electrodes are sitting open on benches, wire spools have no identification, and nobody can tell you the batch number of the filler metal that went into last week's critical weld. Under ISO 3834, that's a non-conformance waiting to happen.</p>
+
+    <p><strong>Confusing ISO 3834 with ISO 9001.</strong> Having ISO 9001 certification is good, but it doesn't cover the technical welding requirements that ISO 3834 addresses. I've had fabricators tell me "we've already got ISO 9001, so we're covered". You're not. ISO 9001 won't ask whether your welder is qualified to weld the joint they're welding, or whether your WPS has been validated by procedure qualification testing. They're complementary systems, not interchangeable ones.</p>
+
+    <h2>Getting It Right</h2>
+
+    <p>If you're a fabricator looking at ISO 3834, here's my honest advice.</p>
+
+    <p><strong>Start with a gap analysis.</strong> Get someone who understands the standard to walk through your existing systems and identify where the gaps are. Don't assume you know. I've worked with companies who thought they were 80% there and turned out to be closer to 30%, and others who thought they were starting from scratch but actually had good foundations they just hadn't documented properly.</p>
+
+    <p><strong>Invest in your welding coordinator role.</strong> This is the single most important appointment you'll make. The welding coordinator is responsible for the technical oversight of everything welding-related in your operation. If that person doesn't have the knowledge, experience, and authority to do the job, nothing else in your system will work properly.</p>
+
+    <p><strong>Build your system around your actual processes.</strong> Don't buy generic templates and try to make your shop fit them. Document what you actually do, identify where it falls short of the standard, and then improve the process before you write the procedure. A quality system that reflects reality is infinitely more useful than one that looks good on paper but gets ignored in practice.</p>
+
+    <p><strong>Qualify your procedures properly.</strong> If your WPS needs procedure qualification records (PQRs) to support it, get them done right. Use an accredited testing facility. Make sure the essential variables match your production conditions. This isn't the place to cut corners.</p>
+
+    <p><strong>Commit to maintaining it.</strong> A quality system isn't a one-off project. It's an ongoing discipline. Procedures need reviewing, qualifications need renewing, records need maintaining. If you're not prepared to sustain it, don't bother starting.</p>
+
+    <h2>The Real Cost of Not Having It</h2>
+
+    <p>The conversation I keep having with fabricators is about cost. "It's too expensive to implement." "We can't afford the downtime." "Our clients don't ask for it." That last one is changing fast, and by the time your clients are asking for it, you're already behind.</p>
+
+    <p>The real cost isn't implementing ISO 3834. It's the contracts you're not even being invited to tender for because you can't demonstrate compliance. It's the rework on jobs where a proper quality system would have caught the problem before it became expensive. It's the liability exposure when something fails in service and you can't produce the documentation to show you did everything right.</p>
+
+    <p>I've seen welding failures on Australian projects that could have been prevented by basic controls that ISO 3834 requires. Proper procedure qualification. Welder competency verification. Pre-weld inspection. Consumable traceability. These aren't bureaucratic obstacles. They're the fundamentals of producing reliable welded fabrications.</p>
+
+    <p>Australian fabricators who want to compete on major projects — whether in resources, defence, infrastructure, or manufacturing — need to accept that ISO 3834 isn't going away. It's becoming the entry requirement. The shops that get ahead of it now will be positioned to win the work. The ones that keep treating it as someone else's problem will find the market moving on without them.</p>
+
+    <p><strong>The question isn't whether you can afford to implement ISO 3834. It's whether you can afford not to.</strong></p>
+
+    <hr class="article-divider">
+
+    <!-- CTA -->
+    <div class="article-cta">
+      <h3>Need Help Getting Started?</h3>
+      <p>If you're unsure where your business stands with ISO 3834, or you know there are gaps but aren't sure how to close them, I can help. I work with fabricators across Australia to implement practical, shop-floor-ready quality systems that actually get used — not just filed away. Whether you need a gap analysis, welding coordination support, WPS qualification, or a full ISO 3834 implementation programme, get in touch and we'll have a straight conversation about what's involved.</p>
+      <a href="work-with-graham.html" class="btn btn--primary">Contact Graham</a>
+    </div>
+
+    <hr class="article-divider">
+
+    <!-- Author bio -->
+    <div class="article-author">
+      <div class="article-author__avatar" aria-hidden="true">👷</div>
+      <div>
+        <p class="article-author__name">Graham Fry</p>
+        <p class="article-author__title">IWE &middot; Principal Welding Engineer &middot; Founder, Technoweld</p>
+        <p>Graham Fry is a Principal Welding Engineer and independent welding consultant with over 30 years of experience across Australia and internationally. He holds a European/International Welding Engineer (IWE) designation and works with businesses on welding inspection, consultancy, workforce development, and quality systems.</p>
+      </div>
+    </div>
+
+  </article>
+
+  <!-- Back to articles nav -->
+  <nav class="article-nav" aria-label="Article navigation">
+    <a href="blog.html" class="btn btn--outline" style="color: var(--ink-slate); border-color: var(--border);">← Back to All Articles</a>
+    <a href="work-with-graham.html" class="btn btn--primary">Work with Graham</a>
+  </nav>
+</main>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="footer" role="contentinfo">
+  <div class="footer__inner">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand">
+          <div class="nav__brand-mark" aria-hidden="true" style="width:40px;height:40px;font-size:.85rem;">GF</div>
+          <div class="footer__brand-text-wrap">
+            <span class="footer__brand-name">Graham Fry</span>
+            <span class="footer__brand-title">Principal Welding Engineer</span>
+          </div>
+        </div>
+        <p class="footer__desc">European / International Welding Engineer. 30+ years of welding management consulting, inspection, and quality system implementation across Australia and internationally.</p>
+      </div>
+      <div>
+        <p class="footer__heading">Navigation</p>
+        <ul class="footer__links" role="list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Graham</a></li>
+          <li><a href="career.html">Career &amp; CV</a></li>
+          <li><a href="work-with-graham.html">Work with Graham</a></li>
+          <li><a href="blog.html">Articles</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__heading">Services</p>
+        <ul class="footer__links" role="list">
+          <li><a href="work-with-graham.html">Welding Inspection</a></li>
+          <li><a href="work-with-graham.html">Procedure Development</a></li>
+          <li><a href="work-with-graham.html">Quality Management</a></li>
+          <li><a href="work-with-graham.html">Training &amp; Assessment</a></li>
+          <li><a href="work-with-graham.html">Standards Compliance</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__heading">Contact</p>
+        <div class="footer__contact-item">
+          <span class="footer__contact-icon" aria-hidden="true">📞</span>
+          <span class="footer__contact-text"><a href="tel:+61409698968">+61 409 698 968</a></span>
+        </div>
+        <div class="footer__contact-item">
+          <span class="footer__contact-icon" aria-hidden="true">🌐</span>
+          <span class="footer__contact-text"><a href="https://www.technoweld.com.au" target="_blank" rel="noopener">technoweld.com.au</a></span>
+        </div>
+        <div class="footer__contact-item">
+          <span class="footer__contact-icon" aria-hidden="true">📍</span>
+          <span class="footer__contact-text">South Australia, Australia</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy">&copy; 2025 Graham Fry / Technoweld Pty. Ltd. All rights reserved.</p>
+      <div class="footer__legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
