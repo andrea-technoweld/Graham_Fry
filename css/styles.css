@@ -423,6 +423,13 @@ p:last-child { margin-bottom: 0; }
   padding: 24px;
 }
 .hero__image-placeholder span { font-size: 4rem; display: block; margin-bottom: 12px; opacity: .5; }
+.hero__image-placeholder .hero__video {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto 12px;
+  border-radius: var(--radius);
+}
 .hero__image-placeholder p {
   font-family: var(--font-sans);
   font-size: .75rem;
