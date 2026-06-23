@@ -554,6 +554,9 @@ p:last-child { margin-bottom: 0; }
   background: var(--white);
   border-color: var(--border);
 }
+.section--dark .card--white h3,
+.section--dark .card--white h4 { color: var(--ink-slate); }
+.section--dark .card--white p { color: var(--text-light); }
 
 /* ---- Bio / Profile Layout --------------------------------- */
 .bio-layout {
