@@ -438,6 +438,16 @@ p:last-child { margin-bottom: 0; }
   margin: 0;
 }
 .hero__image img { width: 100%; height: 100%; object-fit: cover; }
+.hero__image .hero__image-placeholder { position: absolute; inset: 0; padding: 0; display: block; }
+.hero__image .hero__image-placeholder > p { display: none; }
+.hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+}
 
 /* Hero stats bar (inside hero) */
 .hero__stats {
